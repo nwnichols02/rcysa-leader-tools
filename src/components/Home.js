@@ -1,7 +1,13 @@
 import React from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
+import LogoutModal from "./LogoutModal";
 
 export default function Home(){
+
+    const [openModal, setOpenModal] = useState(false)
+
+
     const navigate = useNavigate();
     const callingsRoute = () => {
         navigate('/callings')
@@ -26,7 +32,8 @@ export default function Home(){
             <nav>
                 <img/>
                 <h4>Welcome user.name to RCYSA Leader Tools</h4>
-                <button onClick={logoutRoute}>Logout</button>
+                <button onClick={() => setOpenModal(true)}>Logout</button>
+                {openModal && <LogoutModal closeModal={setOpenModal}/>}
             </nav>
             <div className="top-navbar">
                 <button onClick={prayerRoute}>Prayers List</button>
